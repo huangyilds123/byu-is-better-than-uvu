@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 const multer = require('multer')
+
 const upload = multer({
   dest: '../front-end/public/images/',
   limits: {
@@ -83,15 +84,19 @@ app.delete('/api/items/:id', async (req, res) => {
   }
 });
 
+
+
+
+
+
+
 app.put('/api/items/:id', async (req, res) => {
   try {
     let item = await Item.findOne({
       _id: req.params.id
     });
-
     item.title = req.body.title;
     item.description = req.body.description;
-
     item.save();
     res.sendStatus(200);
   } catch (error) {
